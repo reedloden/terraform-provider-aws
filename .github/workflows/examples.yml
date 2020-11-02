@@ -38,7 +38,7 @@ jobs:
         # Substitute as latest release
         VERSION=$(git describe --abbrev=0 --match='v*.*.*' --tags || echo -n "v99.99.99")
         go build -o ${TF_PLUGIN_CACHE_DIR}/${GOOS}_${GOARCH}/terraform-provider-aws_${VERSION}_x4 .
-    - uses: hashicorp/setup-terraform@v1
+    - uses: hashicorp/setup-terraform@v1.2.1
       with:
         terraform_version: ${{ matrix.terraform_version }}
         # Needed to use the output of `terraform validate -json`
