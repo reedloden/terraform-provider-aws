@@ -39,7 +39,7 @@ jobs:
     - uses: actions/setup-go@v2
       with:
         go-version: ${{ env.GO_VERSION }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       id: cache-go-pkg-mod
       timeout-minutes: 2
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       id: cache-terraform-plugin-dir
       timeout-minutes: 2
@@ -71,12 +71,12 @@ jobs:
       run: |
         echo "::set-env name=GOCACHE::$(go env GOCACHE)"
     - if: steps.cache-terraform-plugin-dir.outputs.cache-hit != 'true' || steps.cache-terraform-plugin-dir.outcome == 'failure'
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       with:
         path: ${{ env.GOCACHE }}
         key: ${{ runner.os }}-GOCACHE-${{ hashFiles('go.sum') }}-${{ hashFiles('aws/**') }}
     - if: steps.cache-terraform-plugin-dir.outputs.cache-hit != 'true' || steps.cache-terraform-plugin-dir.outcome == 'failure'
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       with:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       id: cache-terraform-providers-schema
       timeout-minutes: 2
@@ -98,7 +98,7 @@ jobs:
         path: terraform-providers-schema
         key: ${{ runner.os }}-terraform-providers-schema-${{ hashFiles('go.sum') }}-${{ hashFiles('aws/**') }}
     - if: steps.cache-terraform-providers-schema.outputs.cache-hit != 'true' || steps.cache-terraform-providers-schema.outcome == 'failure'
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       timeout-minutes: 2
       with:
         path: terraform-plugin-dir
@@ -131,13 +131,13 @@ jobs:
     - name: go env
       run: |
         echo "::set-env name=GOCACHE::$(go env GOCACHE)"
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
         path: ${{ env.GOCACHE }}
         key: ${{ runner.os }}-GOCACHE-${{ hashFiles('go.sum') }}-${{ hashFiles('aws/**') }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
@@ -159,13 +159,13 @@ jobs:
     - name: go env
       run: |
         echo "::set-env name=GOCACHE::$(go env GOCACHE)"
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
         path: ${{ env.GOCACHE }}
         key: ${{ runner.os }}-GOCACHE-${{ hashFiles('go.sum') }}-${{ hashFiles('aws/**') }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
@@ -189,13 +189,13 @@ jobs:
     - name: go env
       run: |
         echo "::set-env name=GOCACHE::$(go env GOCACHE)"
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
         path: ${{ env.GOCACHE }}
         key: ${{ runner.os }}-GOCACHE-${{ hashFiles('go.sum') }}-${{ hashFiles('aws/**') }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
@@ -214,13 +214,13 @@ jobs:
     - name: go env
       run: |
         echo "::set-env name=GOCACHE::$(go env GOCACHE)"
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
         path: ${{ env.GOCACHE }}
         key: ${{ runner.os }}-GOCACHE-${{ hashFiles('go.sum') }}-${{ hashFiles('aws/**') }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
@@ -238,7 +238,7 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GO_VERSION }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v2.1.4
         continue-on-error: true
         timeout-minutes: 2
         with:
@@ -271,14 +271,14 @@ jobs:
     - uses: actions/setup-go@v2
       with:
         go-version: ${{ env.GO_VERSION }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       continue-on-error: true
       timeout-minutes: 2
       with:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
     - run: cd tools && go install github.com/bflad/tfproviderdocs
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       timeout-minutes: 2
       with:
         path: terraform-providers-schema
